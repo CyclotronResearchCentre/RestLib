@@ -1,9 +1,9 @@
-COMARestLib
+RestLib
 ===========
 
-COMA Resting State fMRI Analysis Library
+Resting State fMRI Analysis Library
 
-COMARestLib is a library to perform advanced postprocessing of resting state data from fMRI Independent Component Analysis.
+RestLib is a library to perform advanced postprocessing of resting state data from fMRI Independent Component Analysis.
 
 Libray has been developed to overcome several classical limitations that appears in Dissorder of Conciousness (DoC) patients analysis.
 
@@ -62,7 +62,6 @@ Comming Soon!!
 In preparation
 
 
-
 This work has been supported by:
 --------------------------------
 
@@ -76,7 +75,6 @@ Many tanks to:
 
 Eric Genon (CRC,ULg)
 
-Cyclotron Research Centre
-University of Liège, Liège
+Cyclotron Research Centre,
+University of Liège, Liège,
 Belgium
-2011
