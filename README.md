@@ -47,10 +47,12 @@ Resting Team (Alphabetic Order):
 - Demertzi Athena. PhD. (a.demertzi@ulg.ac.be)
 - Gómez Francisco. PhD. (fagomezj@gmail.com)
 - Noirhomme Quentin. PhD. (quentin.noirhomme@ulg.ac.be)
+- Schrouff Jessica. PhD Candidate (jschrouff@ulg.ac.be)
 - Soddu Andrea. PhD. (Andrea.Soddu@ulg.ac.be)
 - Ziegler Erik. PhD Candidate (erik.ziegler@ulg.ac.be)
 
 - Prof. Steven Laureys (steven.laureys@ulg.ac.be)
+- Prof. Christophe Phillips (c.phillips@ulg.ac.be)
 
 
 Publications:
@@ -72,11 +74,9 @@ Baquero Katherine has been (supported by Universidad Nacional de Colombia, Colom
 Many tanks to:
 --------------
 
-Christophe Phillips (CRC,ULg)
 Eric Genon (CRC,ULg)
 
-
-COMA Science Group
-Cyclotron Research Center
-University of Liege
+Cyclotron Research Centre
+University of Liège, Liège
+Belgium
 2011
