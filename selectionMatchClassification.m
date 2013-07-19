@@ -9,7 +9,7 @@
 % nCompo: Number of components
 % Tr: Repetition time
 function [assignation maxGoF] = selectionMatchClassification(dirData,nameMask,namesTemplate,indexNeuronal,nCompo,Tr, restlib_path)
-    dataAllFeature = computeGOF(dirData,namesTemplate,nameMask,indexNeuronal);    
+    dataAllFeature = computeGOF(dirData,namesTemplate,nameMask,indexNeuronal,restlib_path);    
     [x As f] = matchingComponents(dataAllFeature);
     A = dataAllFeature;
     [assignedMarks assignedProbs] = IC_selection(dirData,nCompo,nameMask,Tr, restlib_path);

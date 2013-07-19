@@ -6,7 +6,7 @@
 % namesTemplate: Names of the templates
 % maskName: Mask name
 % indexNeuronal: A vector with the index over which the GoF is computed
-function [dataAllFeature] = computeGOF(dirData,namesTemplate,maskName,indexComponents)
+function [dataAllFeature] = computeGOF(dirData,namesTemplate,maskName,indexComponents,restlib_path)
     maskData = load_nii(maskName);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
     jFeature = 1;
@@ -21,7 +21,7 @@ function [dataAllFeature] = computeGOF(dirData,namesTemplate,maskName,indexCompo
         dataCompSpatial = load_nii(sprintf('%s/components/icaAna_sub01_component_ica_s1_%s',dirData,cc));                        
         fgof = [];
         for iTemp = 1:size(namesTemplate,2)
-            dataTemplate = load_nii(sprintf('templates/spatial_hypn_subj/%s',namesTemplate{1,iTemp}));                  
+            dataTemplate = load_nii(sprintf('%s/templates/spatial_hypn_subj/%s',restlib_path,namesTemplate{1,iTemp}));                  
             gofk = computeGodFit(dataTemplate.img,dataCompSpatial.img,maskData.img);                                
             fgof = [fgof gofk];
         end

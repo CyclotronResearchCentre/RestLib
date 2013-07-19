@@ -20,7 +20,7 @@ function [assignedMarks assignedProbs] = IC_selection(dirData,ncompo,maskName,Tr
     % train using the optimal parameters
     classTrain = trainWekaClassifier(ff,'functions.MultilayerPerceptron',{'-H','6','-L','0.7'});
     % classify each component  
-    timeData = load_nii(sprintf('%s/components/icaAna_sub01_timecourses_ica_s1_',dirData));
+    timeData = load_nii(sprintf('%s/components/%s',dirData, time_course_image));
     for i=1:ncompo
         if i<10
             cc = sprintf('00%d',i);
