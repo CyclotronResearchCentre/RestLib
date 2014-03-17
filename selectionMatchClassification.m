@@ -8,11 +8,11 @@
 % indexNeuronal: Index of neuronal data
 % nCompo: Number of components
 % Tr: Repetition time
-function [assignation maxGoF] = selectionMatchClassification(dirData,nameMask,namesTemplate,indexNeuronal,nCompo,Tr, restlib_path)
+function [assignation maxGoF] = selectionMatchClassification(dirData,nameMask,time_course_name,namesTemplate,indexNeuronal,nCompo,Tr, restlib_path)
     dataAllFeature = computeGOF(dirData,namesTemplate,nameMask,indexNeuronal,restlib_path);    
     [x As f] = matchingComponents(dataAllFeature);
     A = dataAllFeature;
-    [assignedMarks assignedProbs] = IC_selection(dirData,nCompo,nameMask,Tr, restlib_path);
+    [assignedMarks assignedProbs] = IC_selection(dirData,nCompo,nameMask,time_course_name,Tr, restlib_path);
     assignation = zeros(size(namesTemplate,2),5);
     for i=1:size(namesTemplate,2)
         assignation(i,:) = [i,find(As(:,i)==1),A(find(As(:,i)==1),i),assignedMarks(find(As(:,i)==1)),assignedProbs(find(As(:,i)==1))];

@@ -11,7 +11,7 @@
 % Tr: repetition Time
 % example of use:
 % IC_selection('data\subj_1',30,'data\subj_1\icaAnaMask',2.0)
-function [assignedMarks assignedProbs] = IC_selection(dirData,ncompo,maskName,Tr,restlib_path)
+function [assignedMarks assignedProbs] = IC_selection(dirData,ncompo,maskName,time_course_name,Tr,restlib_path)
     selectedFeatures = 1:11;    
     maskData = load_nii(maskName);        
     
@@ -20,7 +20,7 @@ function [assignedMarks assignedProbs] = IC_selection(dirData,ncompo,maskName,Tr
     % train using the optimal parameters
     classTrain = trainWekaClassifier(ff,'functions.MultilayerPerceptron',{'-H','6','-L','0.7'});
     % classify each component  
-    timeData = load_nii(sprintf('%s/components/%s',dirData, time_course_image));
+    timeData = load_nii(time_course_name);
     for i=1:ncompo
         if i<10
             cc = sprintf('00%d',i);

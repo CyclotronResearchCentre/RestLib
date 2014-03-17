@@ -602,8 +602,7 @@ function status = view_nii(varargin)
       if axi,
          if isfield(nii_view.handles,'axial_bg') & ~isempty(nii_view.handles.axial_bg) & nii_view.useinterp
             Saxi = squeeze(nii_view.bgimg(:,:,nii_view.slices.axi));
-            if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-            set(nii_view.handles.axial_bg,'CData',Saxi');
+            set(nii_view.handles.axial_bg,'CData',double(Saxi)');
          end
 
          if isfield(nii_view.handles,'axial_image'),
@@ -615,8 +614,7 @@ function status = view_nii(varargin)
                Saxi = Saxi';
             end
 
-            if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-            set(nii_view.handles.axial_image,'CData',Saxi);
+            set(nii_view.handles.axial_image,'CData',double(Saxi));
          end
 
          if isfield(nii_view.handles,'axial_slider'),
@@ -627,8 +625,7 @@ function status = view_nii(varargin)
        if cor,
          if isfield(nii_view.handles,'coronal_bg') & ~isempty(nii_view.handles.coronal_bg) & nii_view.useinterp
             Scor = squeeze(nii_view.bgimg(:,nii_view.slices.cor,:));
-            if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-            set(nii_view.handles.coronal_bg,'CData',Scor');
+            set(nii_view.handles.coronal_bg,'CData',double(Scor)');
          end
 
          if isfield(nii_view.handles,'coronal_image'),
@@ -640,8 +637,7 @@ function status = view_nii(varargin)
                Scor = Scor';
             end
 
-            if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-            set(nii_view.handles.coronal_image,'CData',Scor);
+            set(nii_view.handles.coronal_image,'CData',double(Scor));
          end
 
          if isfield(nii_view.handles,'coronal_slider'),
@@ -653,8 +649,7 @@ function status = view_nii(varargin)
       if sag,
          if isfield(nii_view.handles,'sagittal_bg') & ~isempty(nii_view.handles.sagittal_bg) & nii_view.useinterp
             Ssag = squeeze(nii_view.bgimg(nii_view.slices.sag,:,:));
-            if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-            set(nii_view.handles.sagittal_bg,'CData',Ssag');
+            set(nii_view.handles.sagittal_bg,'CData',double(Ssag)');
          end
 
          if isfield(nii_view.handles,'sagittal_image'),
@@ -666,8 +661,7 @@ function status = view_nii(varargin)
                Ssag = Ssag';
             end
 
-            if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-            set(nii_view.handles.sagittal_image,'CData',Ssag);
+            set(nii_view.handles.sagittal_image,'CData',double(Ssag));
          end
 
          if isfield(nii_view.handles,'sagittal_slider'),
@@ -701,8 +695,7 @@ function status = view_nii(varargin)
       if axi,
          if isfield(nii_view.handles,'axial_bg') & ~isempty(nii_view.handles.axial_bg) & nii_view.useinterp
             Saxi = squeeze(nii_view.bgimg(:,:,nii_view.slices.axi));
-            if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-            set(nii_view.handles.axial_bg,'CData',Saxi');
+            set(nii_view.handles.axial_bg,'CData',double(Saxi)');
          end
 
          if isfield(nii_view.handles,'axial_image'),
@@ -714,8 +707,7 @@ function status = view_nii(varargin)
                Saxi = Saxi';
             end
 
-            if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-            set(nii_view.handles.axial_image,'CData',Saxi);
+            set(nii_view.handles.axial_image,'CData',double(Saxi));
          end
 
          if isfield(nii_view.handles,'axial_slider'),
@@ -726,8 +718,7 @@ function status = view_nii(varargin)
       if cor,
          if isfield(nii_view.handles,'coronal_bg') & ~isempty(nii_view.handles.coronal_bg) & nii_view.useinterp
             Scor = squeeze(nii_view.bgimg(:,nii_view.slices.cor,:));
-            if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-            set(nii_view.handles.coronal_bg,'CData',Scor');
+            set(nii_view.handles.coronal_bg,'CData',double(Scor)');
          end
 
          if isfield(nii_view.handles,'coronal_image'),
@@ -739,8 +730,7 @@ function status = view_nii(varargin)
                Scor = Scor';
             end
 
-            if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-            set(nii_view.handles.coronal_image,'CData',Scor);
+            set(nii_view.handles.coronal_image,'CData',double(Scor));
          end
 
          if isfield(nii_view.handles,'coronal_slider'),
@@ -752,8 +742,7 @@ function status = view_nii(varargin)
       if sag,
          if isfield(nii_view.handles,'sagittal_bg') & ~isempty(nii_view.handles.sagittal_bg) & nii_view.useinterp
             Ssag = squeeze(nii_view.bgimg(nii_view.slices.sag,:,:));
-            if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-            set(nii_view.handles.sagittal_bg,'CData',Ssag');
+            set(nii_view.handles.sagittal_bg,'CData',double(Ssag)');
          end
 
          if isfield(nii_view.handles,'sagittal_image'),
@@ -765,8 +754,7 @@ function status = view_nii(varargin)
                Ssag = Ssag';
             end
 
-            if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-            set(nii_view.handles.sagittal_image,'CData',Ssag);
+            set(nii_view.handles.sagittal_image,'CData',double(Ssag));
          end
 
          if isfield(nii_view.handles,'sagittal_slider'),
@@ -825,8 +813,7 @@ function status = view_nii(varargin)
 
       if isfield(nii_view.handles,'axial_bg') & ~isempty(nii_view.handles.axial_bg) & nii_view.useinterp
          Saxi = squeeze(nii_view.bgimg(:,:,nii_view.slices.axi));
-         if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-         set(nii_view.handles.axial_bg,'CData',Saxi');
+         set(nii_view.handles.axial_bg,'CData',double(Saxi)');
       end
 
       if isfield(nii_view.handles,'axial_image'),
@@ -838,8 +825,7 @@ function status = view_nii(varargin)
             Saxi = Saxi';
          end
 
-         if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-         set(nii_view.handles.axial_image,'CData',Saxi);
+         set(nii_view.handles.axial_image,'CData',double(Saxi));
       end
 
       if isfield(nii_view.handles,'axial_slider'),
@@ -848,8 +834,7 @@ function status = view_nii(varargin)
 
       if isfield(nii_view.handles,'coronal_bg') & ~isempty(nii_view.handles.coronal_bg) & nii_view.useinterp
          Scor = squeeze(nii_view.bgimg(:,nii_view.slices.cor,:));
-         if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-         set(nii_view.handles.coronal_bg,'CData',Scor');
+         set(nii_view.handles.coronal_bg,'CData',double(Scor)');
       end
 
       if isfield(nii_view.handles,'coronal_image'),
@@ -861,8 +846,7 @@ function status = view_nii(varargin)
             Scor = Scor';
          end
 
-         if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-         set(nii_view.handles.coronal_image,'CData',Scor);
+         set(nii_view.handles.coronal_image,'CData',double(Scor));
       end
 
       if isfield(nii_view.handles,'coronal_slider'),
@@ -872,8 +856,7 @@ function status = view_nii(varargin)
 
       if isfield(nii_view.handles,'sagittal_bg') & ~isempty(nii_view.handles.sagittal_bg) & nii_view.useinterp
          Ssag = squeeze(nii_view.bgimg(nii_view.slices.sag,:,:));
-         if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-         set(nii_view.handles.sagittal_bg,'CData',Ssag');
+         set(nii_view.handles.sagittal_bg,'CData',double(Ssag)');
       end
 
       if isfield(nii_view.handles,'sagittal_image'),
@@ -885,8 +868,7 @@ function status = view_nii(varargin)
             Ssag = Ssag';
          end
 
-         if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-         set(nii_view.handles.sagittal_image,'CData',Ssag);
+         set(nii_view.handles.sagittal_image,'CData',double(Ssag));
       end
 
       if isfield(nii_view.handles,'sagittal_slider'),
@@ -1104,10 +1086,12 @@ function fig = init(nii, fig, area, setunit, setviewpoint, setscanid, buttondown
       minvalue = glblocminmax(1);
       maxvalue = glblocminmax(2);
    else
-      minvalue = double(min(nii.img(:,:,:,setscanid)));
-      minvalue = min(minvalue(:));
-      maxvalue = double(max(nii.img(:,:,:,setscanid)));
-      maxvalue = max(maxvalue(:));
+      minvalue = nii.img(:,:,:,setscanid);
+      minvalue = double(minvalue(:));
+      minvalue = min(minvalue(~isnan(minvalue)));
+      maxvalue = nii.img(:,:,:,setscanid);
+      maxvalue = double(maxvalue(:));
+      maxvalue = max(maxvalue(~isnan(maxvalue)));
    end
 
    if ~isempty(setvalue)
@@ -1161,8 +1145,10 @@ function fig = init(nii, fig, area, setunit, setviewpoint, setscanid, buttondown
          bgimg = [];
          nii.img = scale_out(nii.img, cbarminmax(1), cbarminmax(2), 199);
 
-         minvalue = double(min(nii.img(:)));
-         maxvalue = double(max(nii.img(:)));
+         minvalue = double(nii.img(:));
+         minvalue = min(minvalue(~isnan(minvalue)));
+         maxvalue = double(nii.img(:));
+         maxvalue = max(maxvalue(~isnan(maxvalue)));
 
          if ~isempty(glblocminmax)		% maxvalue is gray
             minvalue = glblocminmax(1);
@@ -2034,6 +2020,7 @@ end
 
    if nii_view.numscan > 1
       set(handles.Tcontrast, 'string', 'Scan ID:');
+      set(handles.contrast, 'TooltipString', 'Change Scan ID');
    elseif colorindex < 2 | colorindex > 3
       set(handles.Tcontrast, 'visible', 'off');
    end
@@ -2398,10 +2385,12 @@ function fig = update_img(img, fig, opt)
       minvalue = opt.glblocminmax(1);
       maxvalue = opt.glblocminmax(2);
    else
-      minvalue = double(min(img(:,:,:,setscanid)));
-      minvalue = min(minvalue(:));
-      maxvalue = double(max(img(:,:,:,setscanid)));
-      maxvalue = max(maxvalue(:));
+      minvalue = img(:,:,:,setscanid);
+      minvalue = double(minvalue(:));
+      minvalue = min(minvalue(~isnan(minvalue)));
+      maxvalue = img(:,:,:,setscanid);
+      maxvalue = double(maxvalue(:));
+      maxvalue = max(maxvalue(~isnan(maxvalue)));
    end
 
    if isfield(opt, 'setvalue')
@@ -2502,8 +2491,7 @@ function fig = update_img(img, fig, opt)
       Saxi = squeeze(nii_view.bgimg(:,:,nii_view.slices.axi));
 
       if isfield(nii_view.handles,'axial_bg') & ~isempty(nii_view.handles.axial_bg)
-         if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-         set(nii_view.handles.axial_bg,'CData',Saxi');
+         set(nii_view.handles.axial_bg,'CData',double(Saxi)');
       else
          axes(nii_view.handles.axial_axes);
 
@@ -2530,8 +2518,7 @@ function fig = update_img(img, fig, opt)
          Saxi = Saxi';
       end
 
-      if ~strcmp(class(Saxi),'uint8'), Saxi = double(Saxi); end;
-      set(nii_view.handles.axial_image,'CData',Saxi);
+      set(nii_view.handles.axial_image,'CData',double(Saxi));
    end
 
    set(nii_view.handles.axial_axes,'CLim',clim);
@@ -2540,8 +2527,7 @@ function fig = update_img(img, fig, opt)
       Scor = squeeze(nii_view.bgimg(:,nii_view.slices.cor,:));
 
       if isfield(nii_view.handles,'coronal_bg') & ~isempty(nii_view.handles.coronal_bg)
-         if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-         set(nii_view.handles.coronal_bg,'CData',Scor');
+         set(nii_view.handles.coronal_bg,'CData',double(Scor)');
       else
          axes(nii_view.handles.coronal_axes);
 
@@ -2567,8 +2553,7 @@ function fig = update_img(img, fig, opt)
          Scor = Scor';
       end
 
-      if ~strcmp(class(Scor),'uint8'), Scor = double(Scor); end;
-      set(nii_view.handles.coronal_image,'CData',Scor);
+      set(nii_view.handles.coronal_image,'CData',double(Scor));
    end
 
    set(nii_view.handles.coronal_axes,'CLim',clim);
@@ -2577,8 +2562,7 @@ function fig = update_img(img, fig, opt)
       Ssag = squeeze(nii_view.bgimg(nii_view.slices.sag,:,:));
 
       if isfield(nii_view.handles,'sagittal_bg') & ~isempty(nii_view.handles.sagittal_bg)
-         if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-         set(nii_view.handles.sagittal_bg,'CData',Ssag');
+         set(nii_view.handles.sagittal_bg,'CData',double(Ssag)');
       else
          axes(nii_view.handles.sagittal_axes);
 
@@ -2604,8 +2588,7 @@ function fig = update_img(img, fig, opt)
          Ssag = Ssag';
       end
 
-      if ~strcmp(class(Ssag),'uint8'), Ssag = double(Ssag); end;
-      set(nii_view.handles.sagittal_image,'CData',Ssag);
+      set(nii_view.handles.sagittal_image,'CData',double(Ssag));
    end
 
    set(nii_view.handles.sagittal_axes,'CLim',clim);
@@ -2809,8 +2792,7 @@ function h1 = plot_view(fig, x, y, img_ax, img_slice, clim, ...
             h1 = nii_view.handles.sagittal_image;
          end
 
-         if ~strcmp(class(img_slice),'uint8'), img_slice = double(img_slice); end;
-         set(h1, 'cdata', img_slice);
+         set(h1, 'cdata', double(img_slice));
          set(h1, 'xdata', 1:size(img_slice,2));
          set(h1, 'ydata', 1:size(img_slice,1));
 
@@ -2877,8 +2859,7 @@ function h1 = plot_cbar(fig, cbar_axes, cbarminmax_axes, cbarminmax, ...
 
    else
       h1 = nii_view.handles.cbar_image;
-      if ~strcmp(class(cbar_image),'uint8'), cbar_image = double(cbar_image); end;
-      set(h1, 'cdata', cbar_image);
+      set(h1, 'cdata', double(cbar_image));
    end
 
    set(cbar_axes,'YDir','normal','XLimMode','manual', ...
@@ -3225,23 +3206,20 @@ function hist_eq(fig)
    %
    img_slice = squeeze(double(nii_view.disp(:,:,nii_view.slices.axi)));
    h1 = nii_view.handles.axial_image;
-   if ~strcmp(class(img_slice),'uint8'), img_slice = double(img_slice); end;
-   set(h1, 'cdata', img_slice');
+   set(h1, 'cdata', double(img_slice)');
 
    %  update coronal view
    %
    img_slice = squeeze(double(nii_view.disp(:,nii_view.slices.cor,:)));
    h1 = nii_view.handles.coronal_image;
-   if ~strcmp(class(img_slice),'uint8'), img_slice = double(img_slice); end;
-   set(h1, 'cdata', img_slice');
+   set(h1, 'cdata', double(img_slice)');
 
    %  update sagittal view
    %
    img_slice = squeeze(double(nii_view.disp(nii_view.slices.sag,:,:)));
 
    h1 = nii_view.handles.sagittal_image;
-   if ~strcmp(class(img_slice),'uint8'), img_slice = double(img_slice); end;
-   set(h1, 'cdata', img_slice');
+   set(h1, 'cdata', double(img_slice)');
 
    %  remove disp field if un-check 'histeq' button
    %
@@ -3278,25 +3256,25 @@ function [top1_label, top2_label, side1_label, side2_label] = ...
 
    if isempty(nii_view)
       axes(top_ax);
-      top1_label = text(top1_label_pos(1),top1_label_pos(2), ...
+      top1_label = text(double(top1_label_pos(1)),double(top1_label_pos(2)), ...
 	'== X =>', ...
 	'vertical', 'bottom', ...
 	'unit', 'normal', 'fontsize', 8);
 
       axes(top_ax);
-      top2_label = text(top2_label_pos(1),top2_label_pos(2), ...
+      top2_label = text(double(top2_label_pos(1)),double(top2_label_pos(2)), ...
 	'== Y =>', ...
 	'rotation', 90, 'vertical', 'top', ...
 	'unit', 'normal', 'fontsize', 8);
 
       axes(side_ax);
-      side1_label = text(side1_label_pos(1),side1_label_pos(2), ...
+      side1_label = text(double(side1_label_pos(1)),double(side1_label_pos(2)), ...
 	'<= Y ==', ...
 	'horizontal', 'right', 'vertical', 'top', ...
 	'unit', 'normal', 'fontsize', 8);
 
       axes(side_ax);
-      side2_label = text(side2_label_pos(1),side2_label_pos(2), ...
+      side2_label = text(double(side2_label_pos(1)),double(side2_label_pos(2)), ...
 	'== Z =>', ...
 	'rotation', 90, 'vertical', 'bottom', ...
 	'unit', 'normal', 'fontsize', 8);

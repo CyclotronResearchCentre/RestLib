@@ -1,19 +1,20 @@
-%  Make NIfTI structure specified by an N-D matrix. Usually, N is 3 for 
-%  3D matrix [x y z], or 4 for 4D matrix with time series [x y z t]. 
+%  Make ANALYZE 7.5 data structure specified by a 3D or 4D matrix.
 %  Optional parameters can also be included, such as: voxel_size, 
 %  origin, datatype, and description. 
 %  
-%  Once the NIfTI structure is made, it can be saved into NIfTI file 
-%  using "save_nii" command (for more detail, type: help save_nii). 
+%  Once the ANALYZE structure is made, it can be saved into ANALYZE 7.5 
+%  format data file using "save_untouch_nii" command (for more detail, 
+%  type: help save_untouch_nii). 
 %  
-%  Usage: nii = make_nii(img, [voxel_size], [origin], [datatype], ...
-%		[description])
+%  Usage: ana = make_ana(img, [voxel_size], [origin], [datatype], [description])
 %
 %  Where:
 %
-%	img:		Usually, img is a 3D matrix [x y z], or a 4D
-%			matrix with time series [x y z t]. However,
-%			NIfTI allows a maximum of 7D matrix.
+%	img:		a 3D matrix [x y z], or a 4D matrix with time
+%			series [x y z t]. When image is in RGB format,
+%			make sure that the size of 4th dimension is 
+%			always 3 (i.e. [R G B]). In that case, make 
+%			sure that you must specify RGB datatype to 128.
 %
 %	voxel_size (optional):	Voxel size in millimeter for each
 %				dimension. Default is [1 1 1].
@@ -22,32 +23,32 @@
 %
 %	datatype (optional):	Storage data type:
 %		2 - uint8,  4 - int16,  8 - int32,  16 - float32,
-%		64 - float64,  256 - int8,  512 - uint16,  
-%		768 - uint32
+%		64 - float64,  128 - RGB24
 %			Default will use the data type of 'img' matrix
+%			For RGB image, you must specify it to 128.
 %
 %	description (optional):	Description of data. Default is ''.
 %
 %  e.g.:
 %     origin = [33 44 13]; datatype = 64;
-%     nii = make_nii(img, [], origin, datatype);    % default voxel_size
+%     ana = make_ana(img, [], origin, datatype);    % default voxel_size
 %
-%  NIFTI data format can be found on: http://nifti.nimh.nih.gov
+%  ANALYZE 7.5 format: http://www.rotman-baycrest.on.ca/~jimmy/ANALYZE75.pdf
 %
 %  - Jimmy Shen (jimmy@rotman-baycrest.on.ca)
 %
-function nii = make_nii(varargin)
+function ana = make_ana(varargin)
 
-   nii.img = varargin{1};
-   dims = size(nii.img);
-   dims = [length(dims) dims ones(1,8)];
+   ana.img = varargin{1};
+   dims = size(ana.img);
+   dims = [4 dims ones(1,8)];
    dims = dims(1:8);
 
-   voxel_size = [0 ones(1,7)];
+   voxel_size = [0 ones(1,3) zeros(1,4)];
    origin = zeros(1,5);
    descrip = '';
 
-   switch class(nii.img)
+   switch class(ana.img)
       case 'uint8'
          datatype = 2;
       case 'int16'
@@ -58,14 +59,8 @@ function nii = make_nii(varargin)
          datatype = 16;
       case 'double'
          datatype = 64;
-      case 'int8'
-         datatype = 256;
-      case 'uint16'
-         datatype = 512;
-      case 'uint32'
-         datatype = 768;
       otherwise
-         error('Datatype is not supported by make_nii.');
+         error('Datatype is not supported by make_ana.');
    end
 
    if nargin > 1 & ~isempty(varargin{2})
@@ -78,44 +73,48 @@ function nii = make_nii(varargin)
 
    if nargin > 3 & ~isempty(varargin{4})
       datatype = double(varargin{4});
+
+      if datatype == 128 | datatype == 511
+         dims(5) = [];
+         dims = [dims 1];
+      end
    end
 
    if nargin > 4 & ~isempty(varargin{5})
       descrip = varargin{5};
    end
 
-   if ndims(nii.img) > 7
-      error('NIfTI only allows a maximum of 7 Dimension matrix.');
+   if ndims(ana.img) > 4
+      error('NIfTI only allows a maximum of 4 Dimension matrix.');
    end
 
-   maxval = round(double(max(nii.img(:))));
-   minval = round(double(min(nii.img(:))));
+   maxval = round(double(max(ana.img(:))));
+   minval = round(double(min(ana.img(:))));
 
-   nii.hdr = make_header(dims, voxel_size, origin, datatype, ...
+   ana.hdr = make_header(dims, voxel_size, origin, datatype, ...
 	descrip, maxval, minval);
+   ana.filetype = 0;
+   ana.ext = [];
+   ana.untouch = 1;
 
-   switch nii.hdr.dime.datatype
+   switch ana.hdr.dime.datatype
    case 2
-      nii.img = uint8(nii.img);
+      ana.img = uint8(ana.img);
    case 4
-      nii.img = int16(nii.img);
+      ana.img = int16(ana.img);
    case 8
-      nii.img = int32(nii.img);
+      ana.img = int32(ana.img);
    case 16
-      nii.img = single(nii.img);
+      ana.img = single(ana.img);
    case 64
-      nii.img = double(nii.img);
-   case 256
-      nii.img = int8(nii.img);
-   case 512
-      nii.img = uint16(nii.img);
-   case 768
-      nii.img = uint32(nii.img);
+      ana.img = double(ana.img);
+   case 128
+      ana.img = uint8(ana.img);
    otherwise
-      error('Datatype is not supported by make_nii.');
+      error('Datatype is not supported by make_ana.');
    end
 
-   return;					% make_nii
+   return;					% make_ana
 
 
 %---------------------------------------------------------------------
@@ -138,7 +137,7 @@ function hk = header_key
     hk.extents          = 0;
     hk.session_error    = 0;
     hk.regular          = 'r';
-    hk.dim_info         = 0;
+    hk.hkey_un0         = '0';
     
     return;					% header_key
 
@@ -147,10 +146,9 @@ function hk = header_key
 function dime = image_dimension(dims, voxel_size, datatype, maxval, minval)
    
    dime.dim = dims;
-   dime.intent_p1 = 0;
-   dime.intent_p2 = 0;
-   dime.intent_p3 = 0;
-   dime.intent_code = 0;
+   dime.vox_units = 'mm';
+   dime.cal_units = '';
+   dime.unused1 = 0;
    dime.datatype = datatype;
    
    switch dime.datatype
@@ -164,28 +162,22 @@ function dime = image_dimension(dims, voxel_size, datatype, maxval, minval)
       dime.bitpix = 32; precision = 'float32';
    case  64,
       dime.bitpix = 64; precision = 'float64';
-   case 256 
-      dime.bitpix = 8;  precision = 'int8';
-   case 512 
-      dime.bitpix = 16; precision = 'uint16';
-   case 768 
-      dime.bitpix = 32; precision = 'uint32';
+   case 128
+      dime.bitpix = 24;  precision = 'uint8';
    otherwise
-      error('Datatype is not supported by make_nii.');
+      error('Datatype is not supported by make_ana.');
    end
    
-   dime.slice_start = 0;
+   dime.dim_un0 = 0;
    dime.pixdim = voxel_size;
    dime.vox_offset = 0;
-   dime.scl_slope = 0;
-   dime.scl_inter = 0;
-   dime.slice_end = 0;
-   dime.slice_code = 0;
-   dime.xyzt_units = 0;
+   dime.roi_scale = 1;
+   dime.funused1 = 0;
+   dime.funused2 = 0;
    dime.cal_max = 0;
    dime.cal_min = 0;
-   dime.slice_duration = 0;
-   dime.toffset = 0;
+   dime.compressed = 0;
+   dime.verified = 0;
    dime.glmax = maxval;
    dime.glmin = minval;
    
@@ -197,20 +189,22 @@ function hist = data_history(origin, descrip)
    
    hist.descrip = descrip;
    hist.aux_file = 'none';
-   hist.qform_code = 0;
-   hist.sform_code = 0;
-   hist.quatern_b = 0;
-   hist.quatern_c = 0;
-   hist.quatern_d = 0;
-   hist.qoffset_x = 0;
-   hist.qoffset_y = 0;
-   hist.qoffset_z = 0;
-   hist.srow_x = zeros(1,4);
-   hist.srow_y = zeros(1,4);
-   hist.srow_z = zeros(1,4);
-   hist.intent_name = '';
-   hist.magic = '';
+   hist.orient = 0;
    hist.originator = origin;
+   hist.generated = '';
+   hist.scannum = '';
+   hist.patient_id = '';
+   hist.exp_date = '';
+   hist.exp_time = '';
+   hist.hist_un0 = '';
+   hist.views = 0;
+   hist.vols_added = 0;
+   hist.start_field = 0;
+   hist.field_skip = 0;
+   hist.omax = 0;
+   hist.omin = 0;
+   hist.smax = 0;
+   hist.smin = 0;
    
    return;					% data_history
 
