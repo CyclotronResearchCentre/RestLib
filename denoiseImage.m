@@ -6,12 +6,12 @@
 % nameMask: Mask name
 % nCompo: number of components of the ICA decomposition
 % Tr: Repetition time
-function [compoNeuronal compoNonNeuronal] = denoiseImage(dirData,nameMask,nCompo,Tr,nameNeuronal,nameNonNeuronal,restlib_path)
+function [compoNeuronal compoNonNeuronal] = denoiseImage(dirData,nameMask,nCompo,Tr,tc_image,nameNeuronal,nameNonNeuronal,restlib_path)
     typeProcessing = 'GIFT';
     
-    [assignedMarks] = IC_selection(dirData,nCompo,nameMask,Tr,restlib_path);    
-    %dataCompTemporal = load_nii(sprintf('%s/components/icaAna_sub01_timecourses_ica_s1_',dirData));    
-    dataCompTemporal = getTemporalData(dirData,nCompo,typeProcessing);
+    [assignedMarks] = IC_selection(dirData,nCompo,nameMask,tc_image,Tr,restlib_path);    
+    dataCompTemporal = load_nii(tc_image);    
+    %dataCompTemporal = getTemporalData(dirData,nCompo,typeProcessing);
 
     neuLabel = find(assignedMarks~=0);    
     [acum dataCompSpatial] = getComposite(dirData,dataCompTemporal,neuLabel,typeProcessing);

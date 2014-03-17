@@ -22,12 +22,12 @@ function [assignedMarks assignedProbs] = IC_selection(dirData,ncompo,maskName,ti
     % classify each component  
     timeData = load_nii(time_course_name);
     for i=1:ncompo
-        if i<10
-            cc = sprintf('00%d',i);
+        if i<=10
+            cc = sprintf('000%d',i-1);
         else
-            cc = sprintf('0%d',i);
+            cc = sprintf('00%d',i-1);
         end
-        dataCompSpatial = load_nii(sprintf('%s/components/icaAna_sub01_component_ica_s1_%s',dirData,cc));    
+        dataCompSpatial = load_nii(sprintf('%s/components/vol%s.nii.gz',dirData,cc));    
         % compute the fingerprint for each available template        
         feature = computeFingerprintSpaceTime(dataCompSpatial.img,timeData.img(:,i),maskData.img,Tr);
         feature = feature(:,selectedFeatures);        
